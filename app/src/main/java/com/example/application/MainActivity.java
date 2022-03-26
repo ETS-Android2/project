@@ -2,6 +2,7 @@ package com.example.application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding.listview.setAdapter(arrayAdapter);
 
+        binding.floatingActionButton4.setOnClickListener(view1 -> {
+            startActivity(new Intent(this,NoteDetail.class));
+        });
 
     }
 }
