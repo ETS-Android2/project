@@ -8,8 +8,8 @@ import java.util.HashMap;
 
 public class Data {
 
-    HashMap<String, CourseInfo> courses = new HashMap();
-    ArrayList<Notes> notesArrayList;
+    public HashMap<String, CourseInfo> courses = new HashMap();
+    public ArrayList<Notes> notesArrayList = new ArrayList<>();
     public Data() {
         initializeCourse();
         initializeNotes();
