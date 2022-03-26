@@ -2,20 +2,22 @@ package com.example.application.models.pojos;
 
 public class Notes {
 
-    private int id;
+    private String courseInfo;
     private String title;
+    private String text;
 
-    public Notes(int id, String title) {
-        this.id = id;
+    public Notes(String courseInfo, String title, String text) {
+        this.courseInfo = courseInfo;
         this.title = title;
+        this.text = text;
     }
 
-    public int getId() {
-        return id;
+    public String getCourseInfo() {
+        return courseInfo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCourseInfo(String courseInfo) {
+        this.courseInfo = courseInfo;
     }
 
     public String getTitle() {
@@ -26,10 +28,20 @@ public class Notes {
         this.title = title;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "Notes{" +
-                "title='" + title + '\'' +
+                "courseInfo='" + courseInfo + '\'' +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 }
