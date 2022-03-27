@@ -10,8 +10,8 @@
 
 ---
 ## preview
-![ScreenShot](screenshots/one.jpg)
-![ScreenShot](screenshots/two.jpg)
+![ScreenShot](screenshots/one.jpg  =200x200)
+![ScreenShot](screenshots/two.jpg  =200x200)
 
 ---
 
