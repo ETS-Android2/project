@@ -9,9 +9,9 @@
 
 
 ---
-- preview
-![alt text](screenshots/one.png)
-![alt text](screenshots/two.png)
+## preview
+![](screenshots/one.png)
+![](screenshots/two.png)
 
 ---
 
