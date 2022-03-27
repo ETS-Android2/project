@@ -64,6 +64,7 @@ public class NoteDetail extends AppCompatActivity {
                 data.notesArrayList.add(noteDetail);
 
             }else {
+
                 binding.head.getText().clear();
                 binding.content.getText().clear();
             }
@@ -75,7 +76,12 @@ public class NoteDetail extends AppCompatActivity {
 
     private void populate(int i) {
 
+    Notes notes = data.notesArrayList.get(i);
 
+    int note  = list.indexOf(notes.getCourseInfo());
+    binding.spinner.setSelection(note);
+    binding.head.setText(notes.getTitle());
+    binding.content.setText(notes.getText());
 
     }
 

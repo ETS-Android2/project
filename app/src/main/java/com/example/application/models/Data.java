@@ -17,26 +17,26 @@ public  class Data {
 
     public void initializeNotes() {
 
-        Notes notes = new Notes("moringa","Making responsive layouts","Using divs to add responsiveness in layouts");
+        Notes notes = new Notes("pre_prep","Making responsive layouts","Using divs to add responsiveness in layouts");
 
         notesArrayList.add(notes);
 
-        notes = new Notes("moringa","Using jquery to handle html elements","Using jquery java script library to handle layouts ");
+        notes = new Notes("pre_prep","Using jquery to handle html elements","Using jquery java script library to handle layouts ");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Bootstrap","Using boot strap to make responsive layouts");
+        notes = new Notes("prep","Bootstrap","Using boot strap to make responsive layouts");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Angular","Front end frame work fro angular");
+        notes = new Notes("prep","Angular","Front end frame work fro angular");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","One-way Dataflow","Making one way data flow");
+        notes = new Notes("pre_core","One-way Dataflow","Making one way data flow");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Classes","How to make classes in java");
+        notes = new Notes("pre_core","Classes","How to make classes in java");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Databases","How to make CRUD operation in database");
+        notes = new Notes("core","Databases","How to make CRUD operation in database");
 
         notesArrayList.add(notes);
 
