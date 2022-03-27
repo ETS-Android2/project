@@ -6,7 +6,7 @@ import com.example.application.models.pojos.Notes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Data {
+public  class Data {
 
     public HashMap<String, CourseInfo> courses = new HashMap();
     public ArrayList<Notes> notesArrayList = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Data {
         initializeNotes();
     }
 
-    private void initializeNotes() {
+    public void initializeNotes() {
 
         Notes notes = new Notes("moringa","Making responsive layouts","Using divs to add responsiveness in layouts");
 
