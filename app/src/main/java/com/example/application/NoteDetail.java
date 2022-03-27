@@ -2,6 +2,7 @@ package com.example.application;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,11 +31,17 @@ public class NoteDetail extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        Collection<CourseInfo> getValues = data.courses.values();
-        Iterator<CourseInfo> i = getValues.iterator();
-        while (i.hasNext()) {
-            list.add(i.next());
+        Intent intent = getIntent();
+        int index = intent.getIntExtra("index",0);
+
+        if(this.getIntent().getData() == null){
+
+        }else {
+            populate(index);
         }
+
+        Collection<CourseInfo> getValues = data.courses.values();
+        list.addAll(getValues);
 
         ArrayAdapter<CourseInfo> arrayAdapter = new ArrayAdapter<CourseInfo>(this,
                 android.R.layout.simple_spinner_item,list );
@@ -62,6 +69,12 @@ public class NoteDetail extends AppCompatActivity {
             }
 
         });
+
+
+    }
+
+    private void populate(int i) {
+
 
 
     }

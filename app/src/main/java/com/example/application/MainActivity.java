@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         binding.listview.setAdapter(arrayAdapter);
 
+        binding.listview.setOnItemClickListener((adapterView, view1, i, l) -> {
+            Intent intent = new Intent(this,NoteDetail.class);
+            intent.putExtra("index",i);
+            startActivity(intent);
+        });
+
         binding.fab.setOnClickListener(view1 -> {
             startActivity(new Intent(this,NoteDetail.class));
         });
