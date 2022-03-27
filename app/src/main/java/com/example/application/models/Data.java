@@ -6,37 +6,45 @@ import com.example.application.models.pojos.Notes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Data {
+public  class Data {
 
-    HashMap<String, CourseInfo> courses = new HashMap();
-    ArrayList<Notes> notesArrayList;
-    public Data() {
+    private static final Data instanse = new Data();
+
+    public HashMap<String, CourseInfo> courses = new HashMap();
+    public ArrayList<Notes> notesArrayList = new ArrayList<>();
+
+    public  Data(){
         initializeCourse();
         initializeNotes();
     }
+    public static Data getInstance() {
 
-    private void initializeNotes() {
 
-        Notes notes = new Notes("moringa","Making responsive layouts","Using divs to add responsiveness in layouts");
+        return instanse;
+    }
 
-        notesArrayList.add(notes);
+    public void initializeNotes() {
 
-        notes = new Notes("moringa","Using jquery to handle html elements","Using jquery java script library to handle layouts ");
-
-        notesArrayList.add(notes);
-        notes = new Notes("moringa","Bootstrap","Using boot strap to make responsive layouts");
+        Notes notes = new Notes("pre_prep","Making responsive layouts","Using divs to add responsiveness in layouts");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Angular","Front end frame work fro angular");
+
+        notes = new Notes("pre_prep","Using jquery to handle html elements","Using jquery java script library to handle layouts ");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","One-way Dataflow","Making one way data flow");
+        notes = new Notes("prep","Bootstrap","Using boot strap to make responsive layouts");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Classes","How to make classes in java");
+        notes = new Notes("prep","Angular","Front end frame work fro angular");
 
         notesArrayList.add(notes);
-        notes = new Notes("moringa","Databases","How to make CRUD operation in database");
+        notes = new Notes("pre_core","One-way Dataflow","Making one way data flow");
+
+        notesArrayList.add(notes);
+        notes = new Notes("pre_core","Classes","How to make classes in java");
+
+        notesArrayList.add(notes);
+        notes = new Notes("core","Databases","How to make CRUD operation in database");
 
         notesArrayList.add(notes);
 
