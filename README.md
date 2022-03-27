@@ -1,5 +1,5 @@
-# Wildlife Tracker
-- This application allows rangers to track sightings of wild animal in the park
+#Note taking Application
+- This application to take notes
 ----
 **Version1.0.0**
 
