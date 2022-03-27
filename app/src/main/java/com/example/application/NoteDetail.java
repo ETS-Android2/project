@@ -34,9 +34,7 @@ public class NoteDetail extends AppCompatActivity {
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
 
-        if(this.getIntent().getData() == null){
-
-        }else {
+        if(index >0) {
             populate(index);
         }
 

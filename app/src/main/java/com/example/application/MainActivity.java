@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.application.databinding.ActivityMainBinding;
 import com.example.application.models.Data;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         binding.listview.setAdapter(arrayAdapter);
 
         binding.listview.setOnItemClickListener((adapterView, view1, i, l) -> {
+            Toast.makeText(this,"Editing existing  Note ",Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(this,NoteDetail.class);
             intent.putExtra("index",i);
             startActivity(intent);
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.fab.setOnClickListener(view1 -> {
             startActivity(new Intent(this,NoteDetail.class));
+            Toast.makeText(this,"Creating new Note ",Toast.LENGTH_SHORT).show();
         });
 
     }
