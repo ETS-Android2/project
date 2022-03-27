@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    Data  data = new Data();
     ArrayAdapter<Notes> arrayAdapter;
 
     @Override
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
-                data.notesArrayList
+                Data.getInstance().notesArrayList
                );
 
 
@@ -50,5 +49,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Creating new Note ",Toast.LENGTH_SHORT).show();
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        arrayAdapter.notifyDataSetChanged();
     }
 }

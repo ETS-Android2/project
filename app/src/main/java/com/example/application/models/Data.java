@@ -8,11 +8,19 @@ import java.util.HashMap;
 
 public  class Data {
 
+    private static final Data instanse = new Data();
+
     public HashMap<String, CourseInfo> courses = new HashMap();
     public ArrayList<Notes> notesArrayList = new ArrayList<>();
-    public Data() {
+
+    public  Data(){
         initializeCourse();
         initializeNotes();
+    }
+    public static Data getInstance() {
+
+
+        return instanse;
     }
 
     public void initializeNotes() {

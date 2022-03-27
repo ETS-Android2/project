@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import java.util.List;
 public class NoteDetail extends AppCompatActivity {
 
     ActivityNoteDetailBinding binding;
-    Data data = new Data()   ;
+    Data data;
     List<CourseInfo> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class NoteDetail extends AppCompatActivity {
             populate(index);
         }
 
-        Collection<CourseInfo> getValues = data.courses.values();
+        Collection<CourseInfo> getValues = Data.getInstance().courses.values();
         list.addAll(getValues);
 
         ArrayAdapter<CourseInfo> arrayAdapter = new ArrayAdapter<CourseInfo>(this,
@@ -50,9 +51,11 @@ public class NoteDetail extends AppCompatActivity {
         binding.spinner.setAdapter(arrayAdapter);
 
 
-        binding.save.setOnClickListener(view1 -> {
+        binding.button.setOnClickListener(view1 -> {
 
             if(valid()){
+
+                Log.i("Hello", "valid");
                 String title = binding.head.getText().toString().trim();
                 String content = binding.content.getText().toString().trim();
                 String course = binding.spinner.getSelectedItem().toString();
@@ -62,6 +65,7 @@ public class NoteDetail extends AppCompatActivity {
                 data.notesArrayList.add(noteDetail);
 
             }else {
+                Log.i("Hello", "not valid");
 
                 binding.head.getText().clear();
                 binding.content.getText().clear();
@@ -85,21 +89,15 @@ public class NoteDetail extends AppCompatActivity {
 
     private boolean valid() {
 
-        if(!TextUtils.isEmpty( binding.head.getText().toString().trim())){
+        if(TextUtils.isEmpty( binding.head.getText().toString().trim())){
             binding.head.setError("This field is required"  );
             return  false;
         }
-        if(!TextUtils.isEmpty( binding.content.getText().toString().trim())){
+        if( TextUtils.isEmpty( binding.content.getText().toString().trim())){
             binding.content.setError("This field is required"  );
             return  false;
 
         }
-        if(binding.spinner.getSelectedItem().toString().trim().equals("")){
-            Toast.makeText(this,"Please select item from spinner",Toast.LENGTH_SHORT).show();
-            return  false;
-
-        }
-
         return true;
     }
 }
