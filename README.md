@@ -10,8 +10,8 @@
 
 ---
 ## preview
-![](screenshots/one.png)
-![](screenshots/two.png)
+![ScreenShot](screenshots/one.png)
+![ScreenShot](screenshots/two.png)
 
 ---
 
