@@ -1,4 +1,4 @@
-#Note taking Application
+# Note taking Application
 - This application to take notes
 ----
 **Version1.0.0**
