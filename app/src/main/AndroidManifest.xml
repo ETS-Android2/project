@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application">
         <activity
+            android:name=".List"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,9 +24,7 @@
         <activity
             android:name=".NoteDetail"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
