@@ -71,5 +71,16 @@ public class ListActivity extends AppCompatActivity {
         binding.recycler.setAdapter(postAdapter);
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
         postAdapter.notifyDataSetChanged();
+        postAdapter.setOnItemClickListener(new PostAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Post post) {
+                Context context = getApplicationContext();
+                CharSequence text = "Clicked Posts";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
     }
 }

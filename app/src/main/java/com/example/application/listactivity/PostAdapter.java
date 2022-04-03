@@ -16,6 +16,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>  {
 
 
     ArrayList<Post> list = new ArrayList<Post>();
+    private OnItemClickListener listener;
 
     public PostAdapter(ArrayList<Post> postList) {
         this.list = postList;
@@ -31,8 +32,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = list.get(position);
-        holder.binding.title.setText(post.getTitle());
-        holder.binding.title.setText(post.getBody());
+        holder.binding.title.setText("Title :"+post.getTitle());
+        holder.binding.body.setText("Body :"+post.getBody());
+
     }
 
     @Override
@@ -47,6 +49,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>  {
         public ViewHolder(@NonNull ItemPostBinding itemView) {
             super(itemView.getRoot());
             this.binding =itemView;
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(list.get(position));
+                    }
+                }
+            });
         }
     }
+
+    public  interface OnItemClickListener{
+        void onItemClick(Post post);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
 }
