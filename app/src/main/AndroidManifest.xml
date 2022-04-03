@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application">
         <activity
-            android:name=".PosrtDetails"
+            android:name=".PostDetails.PosrtDetails"
             android:exported="false" />
         <activity
             android:name=".listactivity.ListActivity"

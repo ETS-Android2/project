@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.application.PostDetails.PosrtDetails;
 import com.example.application.databinding.ActivityListBinding;
 import com.example.application.models.pojos.Post;
 import com.example.application.network.instance.RetrofitInstance;
@@ -28,6 +31,7 @@ public class ListActivity extends AppCompatActivity {
     public List<Post> postList;
     public Call<List<Post>> posts;
     public static PostCalls postCalls;
+    private static final String TAG = "ListActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-     posts = ListActivity.postCalls.getPost();
+     posts = ListActivity.postCalls.getPosts();
      posts.clone().enqueue(new Callback<List<Post>>() {
          @Override
          public void onResponse(@NonNull Call<List<Post>> call, @NonNull Response<List<Post>> response) {
@@ -74,12 +78,12 @@ public class ListActivity extends AppCompatActivity {
         postAdapter.setOnItemClickListener(new PostAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Post post) {
-                Context context = getApplicationContext();
-                CharSequence text = "Clicked Posts";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+                Log.d(TAG, "onItemClick: " + post.getUserId());
+                Log.d(TAG, "onItemClick: " + post.getId());
+                Intent intent = new Intent(ListActivity.this, PosrtDetails.class);
+                intent.putExtra("id",post.getId());
+                intent.putExtra("uid",post.getUserId());
+                startActivity(intent);
             }
         });
     }
