@@ -31,7 +31,7 @@ public class NoteDetail extends AppCompatActivity {
         binding = ActivityNoteDetailBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+         data = Data.getInstance();
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
 
@@ -60,9 +60,15 @@ public class NoteDetail extends AppCompatActivity {
                 String content = binding.content.getText().toString().trim();
                 String course = binding.spinner.getSelectedItem().toString();
 
+                Toast.makeText(this,title+ " " + content+ " "+course,Toast.LENGTH_SHORT).show();
                 Notes noteDetail = new Notes(course,title,content);
 
                 data.notesArrayList.add(noteDetail);
+
+                binding.head.getText().clear();
+                binding.content.getText().clear();
+
+                Toast.makeText(this,"Note has been successfully added",Toast.LENGTH_SHORT).show();
 
             }else {
                 Log.i("Hello", "not valid");
