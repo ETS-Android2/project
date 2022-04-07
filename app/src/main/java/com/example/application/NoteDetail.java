@@ -60,7 +60,6 @@ public class NoteDetail extends AppCompatActivity {
                 String content = binding.content.getText().toString().trim();
                 String course = binding.spinner.getSelectedItem().toString();
 
-                Toast.makeText(this,title+ " " + content+ " "+course,Toast.LENGTH_SHORT).show();
                 Notes noteDetail = new Notes(course,title,content);
 
                 data.notesArrayList.add(noteDetail);
