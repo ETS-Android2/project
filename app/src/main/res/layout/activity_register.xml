@@ -48,6 +48,7 @@
                     android:text="App Snipp"
                     android:layout_marginTop="40dp"/>
                 <include
+                    android:id="@+id/lay_login"
                     layout="@layout/layout_login"/>
 
             </LinearLayout>
