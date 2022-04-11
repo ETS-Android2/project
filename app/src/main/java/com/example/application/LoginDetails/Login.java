@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.application.MainActivity;
 import com.example.application.Register;
 import com.example.application.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,27 +56,29 @@ public class Login extends AppCompatActivity {
         if(validate()){
 
             String name = binding.next.name.toString().trim();
-            String email = binding.next.email.toString().trim();
-            String pass = binding.next.password.toString().trim();
+            String email = binding.next.email.getText().toString().trim();
+            String pass = binding.next.password.getText().toString().trim();
 
             mAuth.createUserWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                startActivity(new Intent(Login.this, Register.class));
+                                Log.d(TAG, "createUserWithEmail:success");
+                                startActivity(new Intent(Login.this,Register.class));
 
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Login.this, "Authentication failed.",
+                                Toast.makeText(Login.this, " failed.",
                                         Toast.LENGTH_SHORT).show();
 
                             }
-
                         }
                     });
+
+
         }
 
     }

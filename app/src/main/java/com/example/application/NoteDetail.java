@@ -1,6 +1,7 @@
 package com.example.application;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,11 +35,15 @@ public class NoteDetail extends AppCompatActivity {
 
     // creating a variable for our
     // Firebase Database.
-    FirebaseDatabase firebaseDatabase;
+    FirebaseDatabase  db = FirebaseDatabase.getInstance();
 
     // creating a variable for our Database
     // Reference for Firebase.
-    DatabaseReference databaseReference;
+    DatabaseReference  databaseReference = db.getReference().child("Notes");
+
+    DatabaseReference mDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +54,7 @@ public class NoteDetail extends AppCompatActivity {
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("Notes");
+        mDatabase = FirebaseDatabase.getInstance("https://application-ae48e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Notes");
 
         if(index >0) {
             populate(index);
@@ -83,19 +85,8 @@ public class NoteDetail extends AppCompatActivity {
 
                 Notes noteDetail = new Notes(course,title,content);
 
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        databaseReference.setValue(noteDetail);
-                        Toast.makeText(NoteDetail.this, "data added", Toast.LENGTH_SHORT).show();
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                mDatabase.push().setValue(noteDetail);
 
                 data.notesArrayList.add(noteDetail);
 
@@ -103,7 +94,6 @@ public class NoteDetail extends AppCompatActivity {
                 binding.content.getText().clear();
 
                 Toast.makeText(this,"Note has been successfully added",Toast.LENGTH_SHORT).show();
-
             }else {
                 Log.i("Hello", "not valid");
 

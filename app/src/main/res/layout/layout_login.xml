@@ -71,7 +71,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/primaryTextColor"
                 android:text="@string/login_signup_hint"
-                android:onClick="viewRegisterClicked"
+                android:id="@+id/signup"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
 
 
