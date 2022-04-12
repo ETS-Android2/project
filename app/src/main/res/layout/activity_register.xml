@@ -48,8 +48,8 @@
                     android:text="App Snipp"
                     android:layout_marginTop="40dp"/>
                 <include
-                    android:id="@+id/next"
-                    layout="@layout/layout_register"/>
+                    android:id="@+id/lay_login"
+                    layout="@layout/layout_login"/>
 
             </LinearLayout>
             <ImageView

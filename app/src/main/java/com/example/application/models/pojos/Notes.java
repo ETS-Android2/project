@@ -12,6 +12,10 @@ public class Notes {
         this.text = text;
     }
 
+    public Notes() {
+
+    }
+
     public String getCourseInfo() {
         return courseInfo;
     }

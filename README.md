@@ -16,6 +16,8 @@
 ## preview
 ![ScreenShot](screenshots/one.jpg)
 ![ScreenShot](screenshots/two.jpg)
+![ScreenShot](screenshots/three.jpg)
+![ScreenShot](screenshots/four.jpg)
 
 ---
 

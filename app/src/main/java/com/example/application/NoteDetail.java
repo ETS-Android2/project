@@ -1,5 +1,7 @@
 package com.example.application;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +16,11 @@ import com.example.application.databinding.ActivityNoteDetailBinding;
 import com.example.application.models.Data;
 import com.example.application.models.pojos.CourseInfo;
 import com.example.application.models.pojos.Notes;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +32,18 @@ public class NoteDetail extends AppCompatActivity {
     ActivityNoteDetailBinding binding;
     Data data;
     List<CourseInfo> list = new ArrayList<>();
+
+    // creating a variable for our
+    // Firebase Database.
+    FirebaseDatabase  db = FirebaseDatabase.getInstance();
+
+    // creating a variable for our Database
+    // Reference for Firebase.
+    DatabaseReference  databaseReference = db.getReference().child("Notes");
+
+    DatabaseReference mDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +53,8 @@ public class NoteDetail extends AppCompatActivity {
          data = Data.getInstance();
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
+
+        mDatabase = FirebaseDatabase.getInstance("https://application-ae48e-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference().child("Notes");
 
         if(index >0) {
             populate(index);
@@ -60,14 +81,19 @@ public class NoteDetail extends AppCompatActivity {
                 String content = binding.content.getText().toString().trim();
                 String course = binding.spinner.getSelectedItem().toString();
 
+
+
                 Notes noteDetail = new Notes(course,title,content);
 
-                data.notesArrayList.add(noteDetail);
 
+                mDatabase.push().setValue(noteDetail);
+                data.notesArrayList.clear();
                 binding.head.getText().clear();
                 binding.content.getText().clear();
 
                 Toast.makeText(this,"Note has been successfully added",Toast.LENGTH_SHORT).show();
+
+
 
             }else {
                 Log.i("Hello", "not valid");
