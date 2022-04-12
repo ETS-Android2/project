@@ -57,7 +57,12 @@ public class Register extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
 
-                                        startActivity(new Intent(Register.this,MainActivity.class));
+                                        Intent intent = new Intent(Register.this,MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+
+                                        startActivity(intent );
 
                                     } else {
                                         // If sign in fails, display a message to the user.

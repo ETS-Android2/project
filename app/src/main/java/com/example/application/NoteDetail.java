@@ -87,13 +87,14 @@ public class NoteDetail extends AppCompatActivity {
 
 
                 mDatabase.push().setValue(noteDetail);
-
-                data.notesArrayList.add(noteDetail);
-
+                data.notesArrayList.clear();
                 binding.head.getText().clear();
                 binding.content.getText().clear();
 
                 Toast.makeText(this,"Note has been successfully added",Toast.LENGTH_SHORT).show();
+
+
+
             }else {
                 Log.i("Hello", "not valid");
 

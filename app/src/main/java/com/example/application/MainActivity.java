@@ -3,6 +3,7 @@ package com.example.application;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-
         myRef = database.getReference().child("Notes");
+
 
         arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
@@ -66,7 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void addFromFireBase() {
 
+        ProgressDialog progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
 
+        data.notesArrayList.clear();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                     data.notesArrayList.add(ds.getValue(Notes.class));
                     arrayAdapter.notifyDataSetChanged();
+                    progress.dismiss();
 
                 }
             }
@@ -88,6 +95,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        arrayAdapter.notifyDataSetChanged();
+
     }
 }
