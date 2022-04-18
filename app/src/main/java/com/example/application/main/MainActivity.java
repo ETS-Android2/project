@@ -2,6 +2,7 @@ package com.example.application.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -30,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<Notes> arrayAdapter;
     DatabaseReference myRef;
-    List<Notes> notes = new ArrayList<>();
+    ArrayList<Notes> notes = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://application-ae48e-default-rtdb.asia-southeast1.firebasedatabase.app/");
-
+    NoteAdapter noteAdapter;
     Data data  = Data.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +44,8 @@ public class MainActivity extends AppCompatActivity {
         myRef = database.getReference().child("Notes");
 
 
-        arrayAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                Data.getInstance().notesArrayList
-               );
 
         addFromFireBase();
-
-        binding.listview.setAdapter(arrayAdapter);
-
-        binding.listview.setOnItemClickListener((adapterView, view1, i, l) -> {
-            Toast.makeText(this,"Editing existing  Note ",Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, NoteDetail.class);
-            intent.putExtra("index",i);
-            startActivity(intent);
-        });
 
         binding.fab.setOnClickListener(view1 -> {
             startActivity(new Intent(this,NoteDetail.class));
@@ -75,14 +62,22 @@ public class MainActivity extends AppCompatActivity {
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
 
-        data.notesArrayList.clear();
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
 
                     data.notesArrayList.add(ds.getValue(Notes.class));
-                    arrayAdapter.notifyDataSetChanged();
+                    notes.add(ds.getValue(Notes.class));
+                    Log.d("TAG", "onDataChange: " +ds.getValue(Notes.class) );
+                    Log.d("TAG", "number: " + notes.size() );
+                    noteAdapter = new NoteAdapter(notes);
+                    noteAdapter.notifyDataSetChanged();
+
+                    binding.recyclerview.setAdapter(noteAdapter);
+                    binding.recyclerview.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
                     progress.dismiss();
 
                 }
