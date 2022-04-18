@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                     data.notesArrayList.add(ds.getValue(Notes.class));
                     notes.add(ds.getValue(Notes.class));
-                    Log.d("TAG", "onDataChange: " +ds.getValue(Notes.class) );
-                    Log.d("TAG", "number: " + notes.size() );
+
                     noteAdapter = new NoteAdapter(notes);
                     noteAdapter.notifyDataSetChanged();
 
