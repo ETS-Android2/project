@@ -14,11 +14,11 @@ import android.widget.Toast;
 
 import com.example.application.LoginDetails.Login;
 import com.example.application.databinding.ActivityRegisterBinding;
+import com.example.application.main.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class Register extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
 
-                                        Intent intent = new Intent(Register.this,MainActivity.class);
+                                        Intent intent = new Intent(Register.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);

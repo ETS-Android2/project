@@ -49,13 +49,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>  {
         public ViewHolder(@NonNull ItemPostBinding itemView) {
             super(itemView.getRoot());
             this.binding =itemView;
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(list.get(position));
-                    }
+            binding.getRoot().setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(list.get(position));
                 }
             });
         }

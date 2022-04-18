@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.application.MainActivity;
 import com.example.application.Register;
 import com.example.application.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
