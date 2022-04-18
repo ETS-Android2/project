@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         notes = new ArrayList<>();
 
         noteAdapter = new NoteAdapter();
-
+        Toast.makeText(MainActivity.this,"Swipe to delete",Toast.LENGTH_SHORT).show();
         addFromFireBase();
 
         binding.fab.setOnClickListener(view1 -> {
