@@ -18,10 +18,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
     ArrayList<Notes> arrayList;
 
-    public NoteAdapter(ArrayList<Notes> arrayList) {
-        this.arrayList = arrayList;
-    }
 
+
+
+    public void addNotes(ArrayList<Notes> arrayList){
+        this.arrayList = arrayList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +45,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public void remove(int position) {
+            arrayList.remove(position);
+            notifyItemRemoved(position);
+    }
+
+    public void add(int position, Notes deleted) {
+        arrayList.add(position,deleted);
+        notifyItemChanged(position);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder{
 
         ItemNoteBinding binding;
 
@@ -52,5 +65,28 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
             this.binding = itemView;
 
         }
+
+        @Override
+        public void onItemSelected() {
+            itemView.animate()
+                    .alpha(0.7f)
+                    .scaleX(0.9f)
+                    .scaleY(0.9f)
+                    .setDuration(500);
+        }
+
+        @Override
+        public void onItemClear() {
+            itemView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f);
+        }
+    }
+
+
+    public interface ItemTouchHelperViewHolder {
+        void onItemSelected();
+        void onItemClear();
     }
 }
