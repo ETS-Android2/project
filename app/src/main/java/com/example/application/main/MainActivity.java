@@ -1,4 +1,4 @@
-package com.example.application;
+package com.example.application.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.application.NoteDetail;
 import com.example.application.databinding.ActivityMainBinding;
 import com.example.application.models.Data;
 import com.example.application.models.pojos.Notes;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<Notes> arrayAdapter;
     DatabaseReference myRef;
+    List<Notes> notes = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance("https://application-ae48e-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
     Data data  = Data.getInstance();
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         binding.listview.setOnItemClickListener((adapterView, view1, i, l) -> {
             Toast.makeText(this,"Editing existing  Note ",Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(this,NoteDetail.class);
+            Intent intent = new Intent(this, NoteDetail.class);
             intent.putExtra("index",i);
             startActivity(intent);
         });
